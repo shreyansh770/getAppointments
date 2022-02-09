@@ -9,18 +9,14 @@ import {
   Toolbar,
   ToggleButton,
   ToggleButtonGroup,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Paper,
-  Button,
 } from "@mui/material";
 import clsx from "clsx";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import AdminDashboard from "./adminDashboard";
+import DocListTable from "./docListTable";
+import PatListTable from "./patListTable";
+
 
 let Admin = (props) => {
   const classes = adminUseStyles();
@@ -111,7 +107,7 @@ let Admin = (props) => {
                 )}
                 value="History"
               >
-                Appointments 
+                Appointments
               </ToggleButton>
               <ToggleButton
                 className={clsx(
@@ -133,7 +129,7 @@ let Admin = (props) => {
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
- 
+
           <div className={classes.funtions}>
             <div className={classes.text}>
               <Typography variant="h3" component="h3">
@@ -141,11 +137,23 @@ let Admin = (props) => {
               </Typography>
             </div>
             <div className={classes.chaingingComponent}>
-
+              {bread == "Dashboard" ? (
+                <AdminDashboard setState={setBread} />
+              ) : (
+                <></>
+              )}
+              {bread == "Doclist" ? (
+                  <DocListTable state={bread}/>
+              ) : (
+                <></>
+              )}
+              {bread == "Patlist" ? (
+                  <PatListTable state={bread}/>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
-     
-
         </div>
       </div>
     </>

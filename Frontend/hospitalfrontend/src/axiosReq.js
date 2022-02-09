@@ -29,7 +29,17 @@ export const bookApp = (booking)=>{
 }
 
 export const getAllApp = ()=>{
-    console.log("hello");
     let appointments = API.post(`/appFun/getApp`)
     return appointments;
+}
+
+
+export const getAllDoc = ()=>{
+    let allDoc = API.post(`/docfun/getAllDocs`)
+    return allDoc
+}
+
+export const getAllPat = ()=>{
+    let allPat = API.post(`/docfun/getAllPat`)
+    return allPat
 }

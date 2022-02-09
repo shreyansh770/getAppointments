@@ -76,10 +76,101 @@ const adminUseStyles = makeStyles(() => ({
     chaingingComponent: {
         width: "100%",
         height: "90%",
-        display: "flex",
-        flexDirection:"column"
+        display: "flex"
     },
 
+    admincp: {
+        height: "100%",
+        width: "100%",
+       
+        display: "flex",
+        flexDirection: "column"
+    },
+
+    top2: {
+        
+        height: "50%",
+        width: "100%",
+        display:"flex",
+    },
+
+    doclist:{
+     height:"100%",
+     width:"50%",
+     display:"flex",
+     flexDirection:"column",
+     justifyContent:"center",
+     alignItems:"center"
+    },
+
+    icon: {
+        fontSize: "4rem!important",
+        height: "40%!important",
+        width: "100%!important"
+    },
+    bookingLink: {
+        textDecoration: "none!important",
+        marginTop:"1rem!important"
+    },
+
+    ppllist:{
+        height:"100%",
+        width:"50%",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+
+    bottom2: {
+        height: "50%",
+        width: "100%",
+        display:"flex",
+    },
+
+    applist:{
+        height:"100%",
+        width:"50%",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    adoc:{
+        height:"100%",
+        width:"50%",
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+
+    dlist:{
+        height:"100%",
+        width:"100%",
+        display:"flex",
+        flexDirection:"column",
+    },
+
+    searchbar:{
+        width:"100%",
+        height:"10%",
+        display:"flex",
+        alignItems:"center"
+    },
+
+    searchfield:{
+        width:"40%"
+    },
+
+    docTable:{
+        width:"100%",
+        height:"90%",
+    },
+
+    tc:{
+        height:"100%!important"
+    }
 
 }))
 
