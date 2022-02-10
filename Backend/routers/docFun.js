@@ -20,7 +20,6 @@ async function addDoc(req, res) {
     try {
 
         let userObj = req.body;
-
         let doctor = await medicalModel.create(userObj);
 
         res.json({

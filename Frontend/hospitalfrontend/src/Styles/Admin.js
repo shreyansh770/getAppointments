@@ -81,8 +81,7 @@ const adminUseStyles = makeStyles(() => ({
 
     admincp: {
         height: "100%",
-        width: "100%",
-       
+        width: "100%",   
         display: "flex",
         flexDirection: "column"
     },
@@ -170,7 +169,62 @@ const adminUseStyles = makeStyles(() => ({
 
     tc:{
         height:"100%!important"
+    },
+
+    addDocComp:{
+       width:"90%",
+       height:"80%",
+       marginTop:"5%",
+       display:"flex",
+    },
+
+    addDocLables:{
+       height:"100%",
+       width:"35%",
+       display:"flex",
+       flexDirection:"column",
+    
+    },
+
+    docInfo:{
+       height:"11.875%",
+       width:"100%",
+       fontSize:"1.3rem",
+       display:"flex",
+       alignItems:"center",
+       textAlign:"left"
+    },
+
+    btn:{
+        width:"100%",
+        height:"7%",
+    },
+    createBtn:{
+        width:"80%",
+        height:"7%",
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center"
+    },
+
+    appformik:{
+        height:"100%",
+        width:"65%",
+    },
+
+    addDocInputs:{
+        height:"100%",
+        width:"100%",
+        display:'flex',
+        flexDirection:"column"
+    },
+
+    dInput:{
+        height:"11.875%",
+        width:"80%"
     }
+
+
 
 }))
 

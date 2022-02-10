@@ -13,6 +13,7 @@ appRouter.route("/addApp").post(protectRoute, addApp)
 appRouter.route("/delApp").post(protectRoute, isAuth(['admin', 'patient']), delApp)
 appRouter.route("/updApp").post(protectRoute, updApp);
 appRouter.route("/getApp").post(protectRoute, getAll);
+appRouter.route("/getApps").post(protectRoute,isAuth(['admin']), getAllApp);
 
 
 
@@ -117,7 +118,7 @@ async function delApp(req, res) {
     }
 }
 
-// get all appointment
+// get all appointment->doctor/patient
 async function getAll(req,res){
     try {
 
@@ -130,6 +131,22 @@ async function getAll(req,res){
         res.json({
             message:"All appointments",
             appList : user[0].list 
+        })
+        
+    } catch (error) {
+        
+    }
+}
+
+async function getAllApp(req,res){
+    try {
+
+        let apps = await appModel.find({})
+        
+
+        res.json({
+            message:"All appointments",
+            appList : apps
         })
         
     } catch (error) {

@@ -43,3 +43,13 @@ export const getAllPat = ()=>{
     let allPat = API.post(`/docfun/getAllPat`)
     return allPat
 }
+
+export const getAllApps = ()=>{
+    let appointments = API.post(`/appFun/getApps`)
+    return appointments;
+}
+
+export const addDoc=(docBody)=>{
+   let addingDoc = API.post(`/docfun/add`,docBody)
+   return addingDoc
+}

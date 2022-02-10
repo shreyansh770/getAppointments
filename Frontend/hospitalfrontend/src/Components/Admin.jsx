@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import adminUseStyles from "../Styles/Admin";
-import * as api from "../axiosReq";
 import {
   Typography,
   CssBaseline,
@@ -16,6 +15,8 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AdminDashboard from "./adminDashboard";
 import DocListTable from "./docListTable";
 import PatListTable from "./patListTable";
+import AdminAppTable from "./AdminAppTable";
+import AddDoctor from "./addDoctor";
 
 
 let Admin = (props) => {
@@ -149,6 +150,16 @@ let Admin = (props) => {
               )}
               {bread == "Patlist" ? (
                   <PatListTable state={bread}/>
+              ) : (
+                <></>
+              )}
+              {bread == "History" ? (
+                  <AdminAppTable state={bread}/>
+              ) : (
+                <></>
+              )}
+              {bread == "Adddoc" ? (
+                  <AddDoctor state={bread}/>
               ) : (
                 <></>
               )}
