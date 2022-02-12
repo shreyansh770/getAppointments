@@ -49,7 +49,9 @@ async function deleteDoc(req, res) {
         })
 
     } catch (error) {
-
+        res.status(500).json({
+            message: error.message
+        })
     }
 }
 
@@ -74,7 +76,7 @@ async function getAllDoc(req, res) {
 
 //get doctor with speciality
 
-async function getDocWspec(req,res){
+async function getDocWspec(req, res) {
     try {
 
         let specDoc = await medicalModel.find({
@@ -84,7 +86,7 @@ async function getDocWspec(req,res){
         res.json({
             docs: specDoc
         })
-        
+
     } catch (error) {
         res.status(500).json({
             message: error.message

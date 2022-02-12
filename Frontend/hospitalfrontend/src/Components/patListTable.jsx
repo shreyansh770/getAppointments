@@ -1,11 +1,5 @@
 import adminUseStyles from "../Styles/Admin";
 import {
-  Typography,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  ToggleButton,
-  ToggleButtonGroup,
   TableContainer,
   Table,
   TableHead,
@@ -79,7 +73,7 @@ let PatListTable = (props) => {
                     </TableCell>
                     <TableCell align="right">
                       <Button variant="outlined" color="success">
-                        Update
+                        {doc.list.length==0?"No Appointments":"Update"}
                       </Button>
                     </TableCell>
                   </TableRow>

@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState} from "react";
 import { useNavigate } from "react-router";
 import {
   Typography,
@@ -41,6 +41,10 @@ let Login = (prop) => {
   const onSubmit = async (values, props) => {
     
     if (register === true) {
+      let rUser = await api.userSignup(values)
+      setRegister(false);
+      alert("User signup please login")
+
     } else {
        let user = await api.userSignin(values);
         
@@ -76,7 +80,7 @@ let Login = (prop) => {
               </div>
               <div className={classes.info}>
                 <Typography variant="v6">Emergency</Typography>
-                <Typography variant="v6">About Us</Typography>
+                <Typography variant="v6" onClick={() => navigate('/about', { replace: true })}>About Us</Typography>
                 <Typography variant="v6">Contact</Typography>
               </div>
             </Toolbar>

@@ -16,7 +16,7 @@ async function signUp(req, res) {
     try {
 
         let userObj = req.body;
-
+        console.log(userObj);
         let user = await medicalModel.create(userObj);
 
         let payload = user.email;

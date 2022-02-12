@@ -8,8 +8,11 @@ import {
   Toolbar,
   ToggleButton,
   ToggleButtonGroup,
+  TextField,
+  Button,
 } from "@mui/material";
 import clsx from "clsx";
+import * as api from "../axiosReq";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AdminDashboard from "./adminDashboard";
@@ -18,6 +21,7 @@ import PatListTable from "./patListTable";
 import AdminAppTable from "./AdminAppTable";
 import AddDoctor from "./addDoctor";
 
+let remDremail;
 
 let Admin = (props) => {
   const classes = adminUseStyles();
@@ -33,6 +37,18 @@ let Admin = (props) => {
 
   let handleBread = (e) => {
     setBread(e.target.value);
+  };
+
+  let handleBlur = (e) => {
+    remDremail = e.target.value;
+  };
+
+  let handleRem = async (e) => {
+    if (remDremail == "") {
+      alert("Please enter a valid email");
+    }
+    let rem = await api.remDoc(remDremail);
+    console.log(rem);
   };
 
   return (
@@ -143,23 +159,40 @@ let Admin = (props) => {
               ) : (
                 <></>
               )}
-              {bread == "Doclist" ? (
-                  <DocListTable state={bread}/>
-              ) : (
-                <></>
-              )}
-              {bread == "Patlist" ? (
-                  <PatListTable state={bread}/>
-              ) : (
-                <></>
-              )}
-              {bread == "History" ? (
-                  <AdminAppTable state={bread}/>
-              ) : (
-                <></>
-              )}
-              {bread == "Adddoc" ? (
-                  <AddDoctor state={bread}/>
+              {bread == "Doclist" ? <DocListTable state={bread} /> : <></>}
+              {bread == "Patlist" ? <PatListTable state={bread} /> : <></>}
+              {bread == "History" ? <AdminAppTable state={bread} /> : <></>}
+              {bread == "Adddoc" ? <AddDoctor state={bread} /> : <></>}
+
+              {bread == "Remdoc" ? (
+                <>
+                  <div className={classes.remD}>
+                    <div className={classes.remDInfo}>
+                      <div className={classes.remDemailLabel}>Email:</div>
+                      <div className={classes.remDemailInput}>
+                        <TextField
+                          fullWidth
+                          id=""
+                          label="Enter email"
+                          onBlur={(e) => {
+                            handleBlur(e);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className={classes.remDbtn}>
+                      <Button
+                        sx={{ width: "25%" }}
+                        variant="contained"
+                        onClick={(e) => {
+                          handleRem(e);
+                        }}
+                      >
+                        Remove Doctor
+                      </Button>
+                    </div>
+                  </div>
+                </>
               ) : (
                 <></>
               )}

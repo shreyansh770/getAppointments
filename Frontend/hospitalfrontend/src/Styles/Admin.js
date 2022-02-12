@@ -81,25 +81,25 @@ const adminUseStyles = makeStyles(() => ({
 
     admincp: {
         height: "100%",
-        width: "100%",   
+        width: "100%",
         display: "flex",
         flexDirection: "column"
     },
 
     top2: {
-        
+
         height: "50%",
         width: "100%",
-        display:"flex",
+        display: "flex",
     },
 
-    doclist:{
-     height:"100%",
-     width:"50%",
-     display:"flex",
-     flexDirection:"column",
-     justifyContent:"center",
-     alignItems:"center"
+    doclist: {
+        height: "100%",
+        width: "50%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
 
     icon: {
@@ -109,121 +109,155 @@ const adminUseStyles = makeStyles(() => ({
     },
     bookingLink: {
         textDecoration: "none!important",
-        marginTop:"1rem!important"
+        marginTop: "1rem!important"
     },
 
-    ppllist:{
-        height:"100%",
-        width:"50%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center"
+    ppllist: {
+        height: "100%",
+        width: "50%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
 
     bottom2: {
         height: "50%",
         width: "100%",
-        display:"flex",
+        display: "flex",
     },
 
-    applist:{
-        height:"100%",
-        width:"50%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center"
+    applist: {
+        height: "100%",
+        width: "50%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
-    adoc:{
-        height:"100%",
-        width:"50%",
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center"
-    },
-
-    dlist:{
-        height:"100%",
-        width:"100%",
-        display:"flex",
-        flexDirection:"column",
+    adoc: {
+        height: "100%",
+        width: "50%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
 
-    searchbar:{
-        width:"100%",
-        height:"10%",
-        display:"flex",
-        alignItems:"center"
+    dlist: {
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
     },
 
-    searchfield:{
-        width:"40%"
+    searchbar: {
+        width: "100%",
+        height: "10%",
+        display: "flex",
+        alignItems: "center"
     },
 
-    docTable:{
-        width:"100%",
-        height:"90%",
+    searchfield: {
+        width: "40%"
     },
 
-    tc:{
-        height:"100%!important"
+    docTable: {
+        width: "100%",
+        height: "90%",
     },
 
-    addDocComp:{
-       width:"90%",
-       height:"80%",
-       marginTop:"5%",
+    tc: {
+        height: "100%!important"
+    },
+
+    addDocComp: {
+        width: "90%",
+        height: "80%",
+        marginTop: "5%",
+        display: "flex",
+    },
+
+    addDocLables: {
+        height: "100%",
+        width: "35%",
+        display: "flex",
+        flexDirection: "column",
+
+    },
+
+    docInfo: {
+        height: "11.875%",
+        width: "100%",
+        fontSize: "1.3rem",
+        display: "flex",
+        alignItems: "center",
+        textAlign: "left"
+    },
+
+    btn: {
+        width: "100%",
+        height: "7%",
+    },
+    createBtn: {
+        width: "80%",
+        height: "7%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+
+    appformik: {
+        height: "100%",
+        width: "65%",
+    },
+
+    addDocInputs: {
+        height: "100%",
+        width: "100%",
+        display: 'flex',
+        flexDirection: "column"
+    },
+
+    dInput: {
+        height: "11.875%",
+        width: "80%"
+    },
+
+    remD: {
+
+        width: "60%",
+        height: "30%",
+        marginTop: "11%",
+        display: "flex",
+        flexDirection: "column"
+    },
+
+    remDInfo: {
+       width:"100%",  
+
+       height:"70%",
        display:"flex",
     },
-
-    addDocLables:{
-       height:"100%",
-       width:"35%",
-       display:"flex",
-       flexDirection:"column",
-    
+    remDemailLabel:{
+      height:"100%",
+      width:"30%",
+      display:"flex",
+      alignItems:"center",
+      fontSize:"1.4rem"
     },
-
-    docInfo:{
-       height:"11.875%",
-       width:"100%",
-       fontSize:"1.3rem",
-       display:"flex",
-       alignItems:"center",
-       textAlign:"left"
-    },
-
-    btn:{
-        width:"100%",
-        height:"7%",
-    },
-    createBtn:{
-        width:"80%",
-        height:"7%",
+    remDemailInput:{
+        height:"100%",
+        width:"70%",
         display:"flex",
-        flexDirection:"column",
         alignItems:"center"
     },
-
-    appformik:{
-        height:"100%",
-        width:"65%",
-    },
-
-    addDocInputs:{
-        height:"100%",
+    remDbtn: {
         width:"100%",
-        display:'flex',
-        flexDirection:"column"
+        height:"30%",
+        display:"flex",
+        alignItems:"center"
     },
-
-    dInput:{
-        height:"11.875%",
-        width:"80%"
-    }
-
 
 
 }))

@@ -1,5 +1,6 @@
 import {React , useState} from 'react';
 import { BrowserRouter as Router, Routes,Route} from 'react-router-dom'
+import About from './Components/About';
 import Admin from './Components/Admin';
 import Doctor from './Components/Doctor';
 import Patient from './Components/Patient';
@@ -19,6 +20,7 @@ function App() {
          <Route path="patient" element={<Patient user={user} setUser={setUser} />}/>
          <Route path="admin" element={<Admin user={user} setUser={setUser}/> }/> 
          <Route path="doctor" element={<Doctor user={user} setUser={setUser}/>}/>
+         <Route path="about" element={<About user={user} setUser={setUser}/>}/>
         </Routes>
      </Router>
     </>

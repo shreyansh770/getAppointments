@@ -17,6 +17,12 @@ export const userSignin = (userData)=>{
     return user
 }
 
+export const userSignup = (userInfo)=>{
+    // console.log(userInfo);
+    let regisUser = API.post(`/auth/signUp`,{email:userInfo.email,name:userInfo.name,phNo:userInfo.phn,password:userInfo.password,confirmPassword:userInfo.cpassword})
+    return regisUser
+}
+
 export const getDocSpec=(specs)=>{
     let docWspec = API.post(`/docfun/getWspec`,{specs:specs})
     return docWspec
@@ -52,4 +58,9 @@ export const getAllApps = ()=>{
 export const addDoc=(docBody)=>{
    let addingDoc = API.post(`/docfun/add`,docBody)
    return addingDoc
+}
+
+export const remDoc =(remEmail)=>{
+    let remDocObj = API.post(`/docfun/delDoc`,{email:remEmail})
+    return remDocObj;
 }

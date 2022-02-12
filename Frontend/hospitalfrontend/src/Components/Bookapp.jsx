@@ -30,6 +30,7 @@ const specs = [
 ];
 
 let docWSpec;
+let docSpec;
 
 let bookingObj = {
   docName: "",
@@ -75,7 +76,7 @@ let Bookapp = (props) => {
 
   let handleDoctor = async (e) => {
     // axios request for getting doctor with given specs
-    docWSpec = await api.getDocSpec("Consult");
+    docWSpec = await api.getDocSpec(spec);
 
     if (e.target.innerText === "CONFIRM BOOKING") {
       setDis("none");
