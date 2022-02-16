@@ -1,14 +1,18 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const medicalModel = require('../model/medicalModel');
+const otpGenerator = require('otp-generator')
 const {
     JWT_KEY
 } = require('../secrets');
+const sendMail = require('../helper/sendMail');
 
 const authRouter = express.Router();
 
 authRouter.route("/signUp").post(signUp)
 authRouter.route("/signIn").post(signIn)
+authRouter.route("/forgetPassword").post(forgetPassword)
+authRouter.route("/changePass").post(verifyOtp, passChange)
 authRouter.route("/signOut").get(signOut)
 
 
@@ -32,7 +36,7 @@ async function signUp(req, res) {
         res.json({
             message: "User Signed up",
             user: user,
-            token:token
+            token: token
         })
 
     } catch (error) {
@@ -73,7 +77,7 @@ async function signIn(req, res) {
             res.json({
                 message: "User logged in",
                 user: user,
-                token:token
+                token: token
             })
         }
 
@@ -87,12 +91,132 @@ async function signIn(req, res) {
 async function signOut(req, res) {
     try {
 
-        if(req.cookie.login){
+        if (req.cookie.login) {
             res.clearCookie('login');
             res.send("User logged out")
         }
 
     } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+async function forgetPassword(req, res) {
+
+    try {
+
+        let userEmail = req.body
+
+        let user = await medicalModel.findOne({
+            email: userEmail.email
+        })
+
+        if (user == null) {
+            res.json({
+                message: "Please enter a valid email id"
+            })
+        }
+
+        // generating OTP
+        let otp = otpGenerator.generate(6, {
+            upperCaseAlphabets: false,
+            specialChars: false
+        });
+
+        let otpUpdate = await medicalModel.findOneAndUpdate({
+            email: userEmail.email
+        }, {
+            otp: otp
+        }, {
+            new: true
+        })
+
+        // send otp to mail
+        sendMail(undefined, userEmail.email, otp)
+
+        res.json({
+            otpUpdate
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+async function verifyOtp(req, res, next) {
+    try {
+
+        let userOtp = req.body.otp;
+
+        let findUser = await medicalModel.findOne({
+            otp: userOtp
+        });
+
+        if (findUser == null) {
+            res.json({
+                message: "Sorry your OTP did'nt match"
+            })
+        }
+
+        // undefing the otp field
+
+        req.id = findUser.email;
+        next();
+
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+
+async function passChange(req, res) {
+    try {
+
+        let {
+            id
+        } = req;
+
+        let userToUpdate = await medicalModel.findOne({
+            email: id
+        });
+
+        // updating password
+
+        let {
+            password,
+            confirmPassword
+        } = req.body
+
+
+        if (password === confirmPassword) {
+            let user = await medicalModel.findOneAndUpdate({
+                email: id
+            }, {
+                password: password,
+                opt : undefined
+            }, {
+                new: true
+            });
+            res.json({
+                user
+            })
+
+        } else {
+            res.json({
+                message: "passwords dont match"
+            })
+        }
+
+
+    } catch (error) {
+        console.log("hello");
         res.status(500).json({
             message: error.message
         })

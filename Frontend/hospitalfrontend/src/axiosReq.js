@@ -64,3 +64,19 @@ export const remDoc =(remEmail)=>{
     let remDocObj = API.post(`/docfun/delDoc`,{email:remEmail})
     return remDocObj;
 }
+
+
+export const delApp = (appId)=>{
+    let delAppoint = API.post(`/appFun/delApp`,{appId})
+    return delAppoint
+}
+
+export const forgetPass = (email)=>{
+    let fPass = API.post(`/auth/forgetPassword`,{email:email})
+    return fPass
+}
+
+export const verifyEmail = (newPassBody)=>{
+    let cPas = API.post(`/auth/changePass`,newPassBody)
+    return cPas
+}

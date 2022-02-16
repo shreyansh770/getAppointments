@@ -159,10 +159,10 @@ let Admin = (props) => {
               ) : (
                 <></>
               )}
-              {bread == "Doclist" ? <DocListTable state={bread} /> : <></>}
+              {bread == "Doclist" ? <DocListTable state={bread} setState={setBread} /> : <></>}
               {bread == "Patlist" ? <PatListTable state={bread} /> : <></>}
               {bread == "History" ? <AdminAppTable state={bread} /> : <></>}
-              {bread == "Adddoc" ? <AddDoctor state={bread} /> : <></>}
+              {bread == "Adddoc" ? <AddDoctor state={bread}  /> : <></>}
 
               {bread == "Remdoc" ? (
                 <>

@@ -1,11 +1,5 @@
 import adminUseStyles from "../Styles/Admin";
 import {
-  Typography,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  ToggleButton,
-  ToggleButtonGroup,
   TableContainer,
   Table,
   TableHead,
@@ -25,21 +19,25 @@ let AdminAppTable = (props) => {
   useEffect(async () => {
     if (props.state == "History") {
       // fetching all the doctors from database
-      let allApp= await api.getAllApps();
+      let allApp = await api.getAllApps();
       setAppArr(allApp?.data.appList);
     }
   }, [props.state]);
 
-  let handleChange = async (e)=>{
-    
-      let allApp = await api.getAllApps();
-      let arr = allApp?.data.appList.filter((content)=>{
-        return content.patName.includes(e.target.value)
-      })
+  let handleDelApp = async (e) => {
+    let deleteApp = await api.delApp(e.target.className.split(" ")[6]);
+    window.location.reload(false);
+    alert("Appointment deleted");
+  };
 
-      setAppArr(arr)
-  }
+  let handleChange = async (e) => {
+    let allApp = await api.getAllApps();
+    let arr = allApp?.data.appList.filter((content) => {
+      return content.patName.includes(e.target.value);
+    });
 
+    setAppArr(arr);
+  };
 
   return (
     <>
@@ -49,7 +47,9 @@ let AdminAppTable = (props) => {
             className={classes.searchfield}
             label="Enter Name"
             id="fullWidth"
-            onChange={(e)=>{handleChange(e)}}
+            onChange={(e) => {
+              handleChange(e);
+            }}
           />
         </div>
         <div className={classes.docTable}>
@@ -67,25 +67,34 @@ let AdminAppTable = (props) => {
                   <TableCell align="right">Time</TableCell>
                   <TableCell align="right">Date</TableCell>
                   <TableCell align="right">Fees</TableCell>
+                  <TableCell align="right">Cancel</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {appArr.map((app) => (
                   <TableRow key={app._id}>
-                    <TableCell sx={{ fontSize:"1.2rem" , width:"10%" }} >{app.patName}</TableCell>
-                    <TableCell sx={{  width:"15%" }} align="right">---</TableCell>
+                    <TableCell sx={{ fontSize: "1.2rem", width: "10%" }}>
+                      {app.patName}
+                    </TableCell>
+                    <TableCell sx={{ width: "15%" }} align="right">
+                      ---
+                    </TableCell>
                     <TableCell align="right"></TableCell>
+                    <TableCell align="right">{app.docName}</TableCell>
+                    <TableCell align="right">{app.time}</TableCell>
+                    <TableCell align="right">{app.date}</TableCell>
+                    <TableCell align="right">{app.fees}</TableCell>
                     <TableCell align="right">
-                       {app.docName}
-                    </TableCell>
-                    <TableCell align="right">
-                       {app.time}
-                    </TableCell>
-                    <TableCell align="right">
-                       {app.date}
-                    </TableCell>
-                    <TableCell align="right">
-                       {app.fees}
+                      <Button
+                        onClick={(e) => {
+                          handleDelApp(e);
+                        }}
+                        className={app._id}
+                        variant="contained"
+                        color="error"
+                      >
+                        Cancel
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}

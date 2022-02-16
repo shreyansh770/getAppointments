@@ -3,7 +3,7 @@ const {
     nodemailer_pass
 } = require('../secrets');
 
-module.exports = async function sendMail(appointDetail,patientEmail) {
+module.exports = async function sendMail(appointDetail, patientEmail, otp) {
 
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -15,18 +15,29 @@ module.exports = async function sendMail(appointDetail,patientEmail) {
         },
     });
 
-    
-    console.log(appointDetail);
-    console.log(patientEmail);
+
+    if (appointDetail == undefined) {
+        let info = await transporter.sendMail({
+            from: '"Hospital Help" <shreyanshthakur1@gmail.com>', // sender address
+            to: patientEmail,
+            subject: "Password reset",
+            text: `${otp}`
+        });
+
+        // jb email success hota hai to email ki id info me ati hai
+        console.log("->", info.messageId)
+    } else {
+        let info = await transporter.sendMail({
+            from: '"Hospital Help" <shreyanshthakur1@gmail.com>', // sender address
+            to: patientEmail,
+            subject: "You have got an appointment",
+            text: `${appointDetail.date}`
+        });
+
+        // jb email success hota hai to email ki id info me ati hai
+        console.log("->", info.messageId)
+    }
 
 
-    let info = await transporter.sendMail({
-        from: '"Hospital Help" <shreyanshthakur1@gmail.com>', // sender address
-        to:patientEmail,
-        subject : "You have got an appointment",
-        text: `${appointDetail.date}`
-      });
-    
-       // jb email success hota hai to email ki id info me ati hai
-      console.log("->" , info.messageId)
+
 }

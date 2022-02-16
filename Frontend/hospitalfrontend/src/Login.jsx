@@ -1,4 +1,4 @@
-import { React, useState} from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   Typography,
@@ -10,6 +10,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Button,
+  Link,
 } from "@mui/material";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -39,19 +40,20 @@ let Login = (prop) => {
   };
 
   const onSubmit = async (values, props) => {
-    
     if (register === true) {
-      let rUser = await api.userSignup(values)
+      let rUser = await api.userSignup(values);
       setRegister(false);
-      alert("User signup please login")
-
+      alert("User signup please login");
     } else {
-       let user = await api.userSignin(values);
-        
-       localStorage.setItem('user',JSON.stringify({user:user.data.user,token:user.data.token}))
+      let user = await api.userSignin(values);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ user: user.data.user, token: user.data.token })
+      );
 
       if (user.data.user.role === "patient" && profile === "Patient") {
-         navigate("/patient", { replace: true });
+        navigate("/patient", { replace: true });
       } else if (user.data.user.role === "doctor" && profile === "Doctor") {
         navigate("/doctor", { replace: true });
       } else if (user.data.user.role === "admin" && profile === "Admin") {
@@ -80,8 +82,18 @@ let Login = (prop) => {
               </div>
               <div className={classes.info}>
                 <Typography variant="v6">Emergency</Typography>
-                <Typography variant="v6" onClick={() => navigate('/about', { replace: true })}>About Us</Typography>
-                <Typography variant="v6">Contact</Typography>
+                <Typography
+                  variant="v6"
+                  onClick={() => navigate("/about", { replace: true })}
+                >
+                  About Us
+                </Typography>
+                <Typography
+                  variant="v6"
+                  onClick={() => navigate("/contact", { replace: true })}
+                >
+                  Contact
+                </Typography>
               </div>
             </Toolbar>
           </AppBar>
@@ -143,6 +155,25 @@ let Login = (prop) => {
                         name="email"
                         helperText={<ErrorMessage name="email" />}
                       />
+                      {register == false ? (
+                        <Link
+                          component="button"
+                          variant="body2"
+                          sx={{
+                            width: "100%",
+                            textAlign: "right",
+                            textDecoration: "none",
+                          }}
+                          onClick={() => {
+                             navigate("/forgetpassword", { replace: true })
+                          }}
+                        >
+                          Forgot Password ?
+                        </Link>
+                      ) : (
+                        ""
+                      )}
+
                       <Field
                         as={TextField}
                         className={classes.inputs}

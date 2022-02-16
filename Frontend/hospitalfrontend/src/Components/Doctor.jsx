@@ -141,7 +141,7 @@ let Doctor = (props) => {
                         <TableCell align="right">Fees</TableCell>
                         <TableCell align="right">Date</TableCell>
                         <TableCell align="right">Time</TableCell>
-                        <TableCell align="right">Cancel</TableCell>
+                        <TableCell align="right">Update</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

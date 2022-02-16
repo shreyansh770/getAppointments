@@ -48,6 +48,12 @@ let Patient = (props) => {
     navigate("/", { replace: true });
   };
 
+  let handleDelApp = async (e)=>{
+      let deleteApp = await api.delApp(e.target.className.split(" ")[6]);
+      window.location.reload(false);
+      alert("Appointment deleted")
+  }
+
   return (
     <>
       <div className={classes.patientContainer}>
@@ -184,7 +190,7 @@ let Patient = (props) => {
                             {appointment.time}
                           </TableCell>
                           <TableCell align="right" width="16.67%">
-                            <Button variant="outlined" color="error">
+                            <Button className={appointment._id} variant="outlined" color="error" onClick={(e)=>handleDelApp(e)}>
                               Cancel
                             </Button>
                           </TableCell>

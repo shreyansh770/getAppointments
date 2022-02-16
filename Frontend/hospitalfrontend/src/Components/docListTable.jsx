@@ -1,11 +1,5 @@
 import adminUseStyles from "../Styles/Admin";
 import {
-  Typography,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  ToggleButton,
-  ToggleButtonGroup,
   TableContainer,
   Table,
   TableHead,
@@ -21,6 +15,8 @@ import * as api from "../axiosReq";
 let DocListTable = (props) => {
   const classes = adminUseStyles();
   const [docArr, setDocArr] = useState([]);
+
+  console.log(props);
 
   useEffect(async () => {
     if (props.state == "Doclist") {
@@ -78,7 +74,7 @@ let DocListTable = (props) => {
                       {doc.specs ? doc.specs : "No info"}
                     </TableCell>
                     <TableCell align="right">
-                      <Button variant="outlined" color="error">
+                      <Button onClick={()=>{ props.setState("Remdoc")  }} variant="outlined" color="error">
                         Remove
                       </Button>
                     </TableCell>

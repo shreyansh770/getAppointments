@@ -68,8 +68,11 @@ const medicalSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'appModel'
         }]
-    }
+    },
 
+    otp :{
+        type : String
+    }
 
 
 })

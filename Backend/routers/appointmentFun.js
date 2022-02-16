@@ -77,7 +77,7 @@ async function delApp(req, res) {
 
     try {
 
-        let appId = req.body;
+        let appId = req.body.appId;
 
         let appoint = await appModel.find({
             _id: appId
