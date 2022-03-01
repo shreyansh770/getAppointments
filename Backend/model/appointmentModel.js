@@ -15,9 +15,13 @@ mongoose.connect(db_link, {
 
 
 const appSchema = new mongoose.Schema({
-    patName:{
+    patName: {
         type: String,
         required: true
+    },
+
+    patEmail: {
+        type: String,
     },
 
     docName: {
@@ -35,6 +39,12 @@ const appSchema = new mongoose.Schema({
 
     date: {
         type: String,
+    },
+    cloudinary_id: {
+        type: String
+    },
+    avatar:{
+        type:String
     }
 
 

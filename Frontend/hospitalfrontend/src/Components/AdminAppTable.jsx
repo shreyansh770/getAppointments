@@ -12,9 +12,18 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import * as api from "../axiosReq";
+import FileBase64 from "react-file-base64";
 let AdminAppTable = (props) => {
   const classes = adminUseStyles();
   const [appArr, setAppArr] = useState([]);
+  const [loading,setLoading] = useState(false)
+
+  let uploadFile = async (e) => {
+    let str = e.base64
+    let name = e.value
+    let res = await api.reportUpload(str,name);
+    alert("Report uploaded")
+  };
 
   useEffect(async () => {
     if (props.state == "History") {
@@ -62,12 +71,12 @@ let AdminAppTable = (props) => {
                 <TableRow>
                   <TableCell>Patient Name</TableCell>
                   <TableCell align="right">Patient Email</TableCell>
-                  <TableCell align="right">Contact</TableCell>
                   <TableCell align="right">Doctor Name</TableCell>
                   <TableCell align="right">Time</TableCell>
                   <TableCell align="right">Date</TableCell>
                   <TableCell align="right">Fees</TableCell>
                   <TableCell align="right">Cancel</TableCell>
+                  <TableCell align="center">Upload Reports</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -79,7 +88,6 @@ let AdminAppTable = (props) => {
                     <TableCell sx={{ width: "15%" }} align="right">
                       ---
                     </TableCell>
-                    <TableCell align="right"></TableCell>
                     <TableCell align="right">{app.docName}</TableCell>
                     <TableCell align="right">{app.time}</TableCell>
                     <TableCell align="right">{app.date}</TableCell>
@@ -94,6 +102,20 @@ let AdminAppTable = (props) => {
                         color="error"
                       >
                         Cancel
+                      </Button>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Button >
+                        <div>
+                          <FileBase64
+                            type="file"
+                            name="image"
+                            onDone={(e) => {
+                              e.value = app.patName
+                              uploadFile(e);
+                            }}
+                          ></FileBase64>
+                        </div>
                       </Button>
                     </TableCell>
                   </TableRow>

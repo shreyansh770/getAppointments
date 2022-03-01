@@ -94,6 +94,8 @@ async function delApp(req, res) {
             useFindAndModify: false
         })
 
+        console.log(aPat);
+
         let aDoc = await medicalModel.findOneAndUpdate({
             name: appoint[0].docName
         }, {

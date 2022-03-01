@@ -30,15 +30,19 @@ const specs = [
 ];
 
 let docWSpec;
-let docSpec;
+
 
 let bookingObj = {
+  patEmail:"",
   docName: "",
   fees: "",
   patName: "",
   date: "",
   time: "",
 };
+
+let patEmail = JSON.parse(localStorage.getItem("user"))?.user.email;
+
 
 let Bookapp = (props) => {
   const initialValues = {

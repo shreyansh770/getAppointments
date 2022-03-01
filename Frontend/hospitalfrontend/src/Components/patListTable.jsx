@@ -1,3 +1,4 @@
+import React from "react";
 import adminUseStyles from "../Styles/Admin";
 import {
   TableContainer,
@@ -10,6 +11,9 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+
+
+
 import { useState, useEffect } from "react";
 import * as api from "../axiosReq";
 let PatListTable = (props) => {
@@ -24,17 +28,16 @@ let PatListTable = (props) => {
     }
   }, [props.state]);
 
-  let handleChange = async (e)=>{
-    
-      let allPat = await api.getAllPat();
-      let arr = allPat?.data.pats.filter((content)=>{
-        return content.name.includes(e.target.value)
-      })
 
-      setPatArr(arr)
-  }
 
-  
+  let handleChange = async (e) => {
+    let allPat = await api.getAllPat();
+    let arr = allPat?.data.pats.filter((content) => {
+      return content.name.includes(e.target.value);
+    });
+
+    setPatArr(arr);
+  };
 
   return (
     <>
@@ -44,7 +47,9 @@ let PatListTable = (props) => {
             className={classes.searchfield}
             label="Enter Name"
             id="fullWidth"
-            onChange={(e)=>{handleChange(e)}}
+            onChange={(e) => {
+              handleChange(e);
+            }}
           />
         </div>
         <div className={classes.docTable}>
@@ -55,7 +60,7 @@ let PatListTable = (props) => {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell>Doctor Name</TableCell>
+                  <TableCell>Patient Name</TableCell>
                   <TableCell align="right">Email</TableCell>
                   <TableCell align="right">Contact</TableCell>
                   <TableCell align="right">Appointments</TableCell>
@@ -65,15 +70,26 @@ let PatListTable = (props) => {
               <TableBody>
                 {patArr.map((doc) => (
                   <TableRow key={doc._id}>
-                    <TableCell sx={{ fontSize:"1.2rem" , width:"10%" }} >{doc.name}</TableCell>
-                    <TableCell sx={{  width:"25%" }} align="right">{doc.email}</TableCell>
+                    <TableCell sx={{ fontSize: "1.2rem", width: "10%" }}>
+                      {doc.name}
+                    </TableCell>
+                    <TableCell sx={{ width: "25%" }} align="right">
+                      {doc.email}
+                    </TableCell>
                     <TableCell align="right">{doc.phNo}</TableCell>
                     <TableCell align="right">
-                      {doc.list.length!=0 ? doc.list.length : "No Appointments"}
+                      {doc.list.length != 0
+                        ? doc.list.length
+                        : "No Appointments"}
                     </TableCell>
                     <TableCell align="right">
                       <Button variant="outlined" color="success">
-                        {doc.list.length==0?"No Appointments":"Update"}
+                        <input type="file" style={{ display: "none" }} />
+                        {doc.list.length == 0 ? (
+                          "No Appointments"
+                        ) : (
+                           ""
+                        )}
                       </Button>
                     </TableCell>
                   </TableRow>

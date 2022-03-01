@@ -72,8 +72,7 @@ const medicalSchema = new mongoose.Schema({
 
     otp :{
         type : String
-    }
-
+    },
 
 })
 

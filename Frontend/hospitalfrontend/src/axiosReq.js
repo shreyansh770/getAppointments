@@ -80,3 +80,9 @@ export const verifyEmail = (newPassBody)=>{
     let cPas = API.post(`/auth/changePass`,newPassBody)
     return cPas
 }
+
+
+export const reportUpload = (reportImg,name)=>{
+    let res = API.post(`/upload/prescription`,{reportImg,name})
+    return res;
+}

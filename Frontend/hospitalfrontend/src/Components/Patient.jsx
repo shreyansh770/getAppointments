@@ -16,7 +16,8 @@ import {
   TableCell,
   TableBody,
   Paper,
-  Button
+  Button,
+  Link,
 } from "@mui/material";
 import clsx from "clsx";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
@@ -48,11 +49,16 @@ let Patient = (props) => {
     navigate("/", { replace: true });
   };
 
-  let handleDelApp = async (e)=>{
-      let deleteApp = await api.delApp(e.target.className.split(" ")[6]);
-      window.location.reload(false);
-      alert("Appointment deleted")
-  }
+  let openReportTab = (e) => {
+    let reportUrl = e.target.value;
+    window.open(reportUrl);
+  };
+
+  let handleDelApp = async (e) => {
+    let deleteApp = await api.delApp(e.target.className.split(" ")[6]);
+    window.location.reload(false);
+    alert("Appointment deleted");
+  };
 
   return (
     <>
@@ -164,6 +170,7 @@ let Patient = (props) => {
                         <TableCell align="right">Date</TableCell>
                         <TableCell align="right">Time</TableCell>
                         <TableCell align="right">Cancel</TableCell>
+                        <TableCell align="right">Reports</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -177,21 +184,39 @@ let Patient = (props) => {
                           <TableCell component="th" scope="row" width="10.67%">
                             {appointment.patName}
                           </TableCell>
-                          <TableCell align="right" width="16.67%">
+                          <TableCell align="right" width="14.28%">
                             {appointment.docName}
                           </TableCell>
-                          <TableCell align="right" width="16.67%">
+                          <TableCell align="right" width="14.28%">
                             {appointment.fees}
                           </TableCell>
-                          <TableCell align="right" width="16.67%">
+                          <TableCell align="right" width="14.28%">
                             {appointment.date}
                           </TableCell>
-                          <TableCell align="right" width="16.67%">
+                          <TableCell align="right" width="14.28%">
                             {appointment.time}
                           </TableCell>
-                          <TableCell align="right" width="16.67%">
-                            <Button className={appointment._id} variant="outlined" color="error" onClick={(e)=>handleDelApp(e)}>
+                          <TableCell align="right" width="14.28%">
+                            <Button
+                              className={appointment._id}
+                              variant="outlined"
+                              color="error"
+                              onClick={(e) => handleDelApp(e)}
+                            >
                               Cancel
+                            </Button>
+                          </TableCell>
+                          <TableCell align="right" width="14.28%">
+                            <Button
+                              className={appointment._id}
+                              variant="outlined"
+                              color="error"
+                              value={appointment.avatar}
+                              onClick={(e) => openReportTab(e)}
+                            >
+                              {appointment.avatar == undefined
+                                ? "No report"
+                                : "Get Report"}
                             </Button>
                           </TableCell>
                         </TableRow>
