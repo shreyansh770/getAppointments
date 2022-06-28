@@ -2,15 +2,13 @@ const jwt = require('jsonwebtoken');
 const medicalModel = require('../model/medicalModel');
 const {
     JWT_KEY
-} = require('../secrets');
+} =process.env || require('../secrets');
 
 
 module.exports.protectRoute =
     function protectRoute(req, res, next) {
 
         try {
-
-            console.log("Protect Route");
 
             let token =req.headers.authorization.split(" ")[1]
             // let token = req.cookies.login;
@@ -19,6 +17,7 @@ module.exports.protectRoute =
                 let isVerified = jwt.verify(token, JWT_KEY);
 
                 if (isVerified) {
+                    console.log("protect route");
                     req.aId = isVerified.id
                     next();
                 } else {
@@ -58,7 +57,6 @@ module.exports.isAuth =
 
                 if (user) {
            
-                    console.log("isAuth middleware reached");
                     let isAuthorized = roles.includes(user[0].role);
                     if (isAuthorized) {
                         next();

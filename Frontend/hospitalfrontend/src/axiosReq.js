@@ -13,7 +13,9 @@ API.interceptors.request.use((req)=>{
 
 
 export const userSignin = (userData)=>{  
+    // console.log(userData);
     let user = API.post(`/auth/signIn`,{email:userData.email ,password:userData.password})
+    
     return user
 }
 

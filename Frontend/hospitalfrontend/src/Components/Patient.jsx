@@ -51,7 +51,11 @@ let Patient = (props) => {
 
   let openReportTab = (e) => {
     let reportUrl = e.target.value;
-    window.open(reportUrl);
+    if (e.target.value.length == 0) {
+      alert("No report has been uploaded yet");
+    } else {
+      window.open(reportUrl);
+    }
   };
 
   let handleDelApp = async (e) => {

@@ -19,7 +19,9 @@ app.use("/appFun",appRouter)
 app.use("/upload",uploadRouter)
 
 
+let port = '8080'
 
-app.listen(8080,()=>{
-    console.log('Server running on port 8080');
+
+app.listen(process.env.PORT||port,()=>{
+    console.log(`Server running on port ${port}`);
 })

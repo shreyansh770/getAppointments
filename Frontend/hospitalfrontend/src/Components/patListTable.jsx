@@ -64,13 +64,12 @@ let PatListTable = (props) => {
                   <TableCell align="right">Email</TableCell>
                   <TableCell align="right">Contact</TableCell>
                   <TableCell align="right">Appointments</TableCell>
-                  <TableCell align="right">Update</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {patArr.map((doc) => (
                   <TableRow key={doc._id}>
-                    <TableCell sx={{ fontSize: "1.2rem", width: "10%" }}>
+                    <TableCell sx={{ fontSize: "1.2rem", width: "15%" }}>
                       {doc.name}
                     </TableCell>
                     <TableCell sx={{ width: "25%" }} align="right">
@@ -83,14 +82,7 @@ let PatListTable = (props) => {
                         : "No Appointments"}
                     </TableCell>
                     <TableCell align="right">
-                      <Button variant="outlined" color="success">
-                        <input type="file" style={{ display: "none" }} />
-                        {doc.list.length == 0 ? (
-                          "No Appointments"
-                        ) : (
-                           ""
-                        )}
-                      </Button>
+
                     </TableCell>
                   </TableRow>
                 ))}

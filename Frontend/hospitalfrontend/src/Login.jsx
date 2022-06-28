@@ -47,17 +47,21 @@ let Login = (prop) => {
     } else {
       let user = await api.userSignin(values);
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ user: user.data.user, token: user.data.token })
-      );
+      if (user.data.message.includes("Incorrect")) {
+        alert(user.data.message);
+      } else {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ user: user.data.user, token: user.data.token })
+        );
 
-      if (user.data.user.role === "patient" && profile === "Patient") {
-        navigate("/patient", { replace: true });
-      } else if (user.data.user.role === "doctor" && profile === "Doctor") {
-        navigate("/doctor", { replace: true });
-      } else if (user.data.user.role === "admin" && profile === "Admin") {
-        navigate("/admin", { replace: true });
+        if (user.data.user.role === "patient" && profile === "Patient") {
+          navigate("/patient", { replace: true });
+        } else if (user.data.user.role === "doctor" && profile === "Doctor") {
+          navigate("/doctor", { replace: true });
+        } else if (user.data.user.role === "admin" && profile === "Admin") {
+          navigate("/admin", { replace: true });
+        }
       }
     }
   };
@@ -165,7 +169,7 @@ let Login = (prop) => {
                             textDecoration: "none",
                           }}
                           onClick={() => {
-                             navigate("/forgetpassword", { replace: true })
+                            navigate("/forgetpassword", { replace: true });
                           }}
                         >
                           Forgot Password ?

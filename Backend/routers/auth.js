@@ -4,7 +4,7 @@ const medicalModel = require('../model/medicalModel');
 const otpGenerator = require('otp-generator')
 const {
     JWT_KEY
-} = require('../secrets');
+} = process.env || require('../secrets');
 const sendMail = require('../helper/sendMail');
 
 const authRouter = express.Router();
@@ -53,10 +53,13 @@ async function signIn(req, res) {
 
         let userObj = req.body;
 
+        // console.log(userObj);
+
         let user = await medicalModel.findOne({
             email: userObj.email
         })
 
+        // console.log(process.env);
         if (user.password == userObj.password) {
 
             let payload = user.email;
@@ -65,7 +68,7 @@ async function signIn(req, res) {
                 id: payload
             }, JWT_KEY)
 
-
+            
             // in case with frontend we will send token from backend
             // as res.json and frontend will store it in req.headers.authorization
             // and access the same way in backend
@@ -79,6 +82,11 @@ async function signIn(req, res) {
                 user: user,
                 token: token
             })
+        }else{
+            res.json({
+                message: "Incorrect email or password",
+                user: user,
+            }) 
         }
 
     } catch (error) {

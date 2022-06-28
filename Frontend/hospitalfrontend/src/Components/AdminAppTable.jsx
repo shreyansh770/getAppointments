@@ -70,7 +70,6 @@ let AdminAppTable = (props) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Patient Name</TableCell>
-                  <TableCell align="right">Patient Email</TableCell>
                   <TableCell align="right">Doctor Name</TableCell>
                   <TableCell align="right">Time</TableCell>
                   <TableCell align="right">Date</TableCell>
@@ -82,11 +81,8 @@ let AdminAppTable = (props) => {
               <TableBody>
                 {appArr.map((app) => (
                   <TableRow key={app._id}>
-                    <TableCell sx={{ fontSize: "1.2rem", width: "10%" }}>
+                    <TableCell sx={{ fontSize: "1.2rem", width: "14.1%" }}>
                       {app.patName}
-                    </TableCell>
-                    <TableCell sx={{ width: "15%" }} align="right">
-                      ---
                     </TableCell>
                     <TableCell align="right">{app.docName}</TableCell>
                     <TableCell align="right">{app.time}</TableCell>
