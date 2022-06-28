@@ -43,7 +43,12 @@ let About = () => {
                 >
                   Home
                 </Typography>
-                <Typography variant="v6">Contact</Typography>
+                <Typography
+                  variant="v6"
+                  onClick={() => navigate("/contact", { replace: true })}
+                >
+                  Contact
+                </Typography>
               </div>
             </Toolbar>
           </AppBar>
